@@ -82,7 +82,7 @@ docs/
 
 # Data
 data/
-└── hygge.txt          # Source question collection
+└── cozy-queries.txt  # Source question collection
 
 # Scripts for local self-hosting (optional)
 scripts/
