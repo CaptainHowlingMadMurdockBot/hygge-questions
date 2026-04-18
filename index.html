@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cozy Queries - Generate warm, reflective questions for conversations using AI. Perfect for ham radio nets, ice breakers, and meaningful discussions.">
+    <title>Cozy Queries - AI Question Generator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Cozy Queries</h1>
+        <p class="tagline">Generate thoughtful questions for meaningful conversations</p>
+    </header>
+
+    <main class="main">
+        <section class="config-section">
+            <h2>Configure Your AI</h2>
+
+            <div class="form-group">
+                <label for="provider">AI Provider</label>
+                <select id="provider" name="provider">
+                    <option value="openai">OpenAI</option>
+                    <option value="anthropic">Anthropic (Claude)</option>
+                    <option value="openrouter">OpenRouter</option>
+                    <option value="ollama">Ollama (Local)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="api-key">API Key</label>
+                <div class="input-with-toggle">
+                    <input type="password" id="api-key" name="api-key" placeholder="Enter your API key">
+                    <button type="button" id="toggle-api-key" class="toggle-btn">Show</button>
+                </div>
+                <p class="help-text">Your API key stays in your browser and is never transmitted to any server.</p>
+            </div>
+
+            <div class="form-group ollama-url-group" style="display: none;">
+                <label for="ollama-url">Ollama URL</label>
+                <input type="text" id="ollama-url" name="ollama-url" value="http://localhost:11434" placeholder="http://localhost:11434">
+            </div>
+        </section>
+
+        <section class="generate-section">
+            <h2>Generate Questions</h2>
+
+            <div class="form-group">
+                <label for="topic">Topic</label>
+                <input type="text" id="topic" name="topic" placeholder="e.g., amateur radio ice breakers, winter cozy conversations">
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Number of Questions (1-50)</label>
+                <input type="number" id="quantity" name="quantity" min="1" max="50" value="5">
+            </div>
+
+            <button type="button" id="generate-btn" class="btn btn-primary">Generate Questions</button>
+        </section>
+
+        <section class="output-section" style="display: none;">
+            <div class="output-header">
+                <h2>Your Questions</h2>
+                <div class="output-actions">
+                    <button type="button" id="copy-all-btn" class="btn btn-secondary">Copy All</button>
+                    <button type="button" id="pastebin-btn" class="btn btn-secondary">Share to Pastebin</button>
+                </div>
+            </div>
+            <ol id="questions-list" class="questions-list"></ol>
+        </section>
+
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Generating questions...</p>
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            <p id="error-message"></p>
+            <button type="button" id="dismiss-error" class="btn btn-small">Dismiss</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="privacy-notice">
+            <p><strong>Your data stays in your browser.</strong> API keys and questions are never stored on any server.</p>
+            <p>We will never use your questions for AI training.</p>
+        </div>
+    </footer>
+
+    <script src="js/providers.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

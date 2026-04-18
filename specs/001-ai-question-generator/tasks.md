@@ -25,9 +25,9 @@ description: "Task list for Cozy Queries AI question generator implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 [P] Create directory structure: css/, js/, data/, docs/
-- [ ] T002 Copy cozy-queries.txt to data/cozy-queries.txt
-- [ ] T003 [P] Create index.html with basic HTML5 structure and viewport meta tag
+- [X] T001 [P] Create directory structure: css/, js/, data/, docs/
+- [X] T002 Copy cozy-queries.txt to data/cozy-queries.txt
+- [X] T003 [P] Create index.html with basic HTML5 structure and viewport meta tag
 
 ---
 
@@ -37,10 +37,10 @@ description: "Task list for Cozy Queries AI question generator implementation"
 
 **CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Create js/providers.js with AIProvider class and provider configurations (OpenAI, Anthropic, OpenRouter, Ollama)
-- [ ] T005 Create js/storage.js with localStorage service for API key and config persistence
-- [ ] T006 Create js/api.js with generic AI API calling service that routes to correct provider
-- [ ] T007 Create css/style.css with base styles, CSS variables, and responsive breakpoints
+- [X] T004 Create js/providers.js with AIProvider class and provider configurations (OpenAI, Anthropic, OpenRouter, Ollama)
+- [X] T005 Create js/storage.js with localStorage service for API key and config persistence
+- [X] T006 Create js/api.js with generic AI API calling service that routes to correct provider
+- [X] T007 Create css/style.css with base styles, CSS variables, and responsive breakpoints
 
 ---
 
@@ -52,15 +52,15 @@ description: "Task list for Cozy Queries AI question generator implementation"
 
 ### Implementation for User Story 1
 
-- [ ] T008 [P] [US1] Create provider selection dropdown in index.html (select element with options for OpenAI, Anthropic, OpenRouter, Ollama)
-- [ ] T009 [P] [US1] Create API key input field with password type and "Show" toggle
-- [ ] T010 [US1] Implement provider validation logic in js/api.js (test connection on save)
-- [ ] T011 [P] [US1] Create topic input field with placeholder text
-- [ ] T012 [US1] Implement prompt builder in js/api.js using cozy-queries.txt style guidance
-- [ ] T013 [US1] Create "Generate" button and connect to js/api.js generateQuestions function
-- [ ] T014 [US1] Implement question display area with numbered list formatting
-- [ ] T015 [US1] Add loading state with spinner during AI call
-- [ ] T016 [US1] Add error handling UI with user-friendly messages for: network failure, invalid API key, empty response
+- [X] T008 [P] [US1] Create provider selection dropdown in index.html (select element with options for OpenAI, Anthropic, OpenRouter, Ollama)
+- [X] T009 [P] [US1] Create API key input field with password type and "Show" toggle
+- [X] T010 [US1] Implement provider validation logic in js/api.js (test connection on save)
+- [X] T011 [P] [US1] Create topic input field with placeholder text
+- [X] T012 [US1] Implement prompt builder in js/api.js using cozy-queries.txt style guidance
+- [X] T013 [US1] Create "Generate" button and connect to js/api.js generateQuestions function
+- [X] T014 [US1] Implement question display area with numbered list formatting
+- [X] T015 [US1] Add loading state with spinner during AI call
+- [X] T016 [US1] Add error handling UI with user-friendly messages for: network failure, invalid API key, empty response
 
 ---
 
@@ -72,10 +72,10 @@ description: "Task list for Cozy Queries AI question generator implementation"
 
 ### Implementation for User Story 2
 
-- [ ] T017 [P] [US2] Create quantity input (number field, min=1, max=50, default=5)
-- [ ] T018 [US2] Update js/api.js to include quantity in prompt and parse exact count from response
-- [ ] T019 [P] [US2] Implement copy-to-clipboard button next to question list
-- [ ] T020 [US2] Add "Select All" functionality for copying entire list
+- [X] T017 [P] [US2] Create quantity input (number field, min=1, max=50, default=5)
+- [X] T018 [US2] Update js/api.js to include quantity in prompt and parse exact count from response
+- [X] T019 [P] [US2] Implement copy-to-clipboard button next to question list
+- [X] T020 [US2] Add "Select All" functionality for copying entire list
 
 ---
 
@@ -87,10 +87,10 @@ description: "Task list for Cozy Queries AI question generator implementation"
 
 ### Implementation for User Story 3
 
-- [ ] T021 [P] [US3] Add privacy notice banner explaining API key stays in browser
-- [ ] T022 [US3] Create privacy policy section in HTML footer
-- [ ] T023 [US3] Add "Your data never leaves your browser" messaging near API key field
-- [ ] T024 [US3] Test app works when opened directly from file:// protocol (for local testing)
+- [X] T021 [P] [US3] Add privacy notice banner explaining API key stays in browser
+- [X] T022 [US3] Create privacy policy section in HTML footer
+- [X] T023 [US3] Add "Your data never leaves your browser" messaging near API key field
+- [X] T024 [US3] Test app works when opened directly from file:// protocol (for local testing)
 
 ---
 
@@ -102,10 +102,10 @@ description: "Task list for Cozy Queries AI question generator implementation"
 
 ### Implementation for User Story 4
 
-- [ ] T025 [P] [US4] Update css/style.css with mobile-first responsive breakpoints
-- [ ] T026 [US4] Make input fields full-width on mobile
-- [ ] T027 [US4] Ensure touch targets are at least 44px for buttons
-- [ ] T028 [US4] Stack elements vertically on mobile, side-by-side on desktop
+- [X] T025 [P] [US4] Update css/style.css with mobile-first responsive breakpoints
+- [X] T026 [US4] Make input fields full-width on mobile
+- [X] T027 [US4] Ensure touch targets are at least 44px for buttons
+- [X] T028 [US4] Stack elements vertically on mobile, side-by-side on desktop
 - [ ] T029 [US4] Test on mobile browser and fix any overflow issues
 
 ---
@@ -118,10 +118,10 @@ description: "Task list for Cozy Queries AI question generator implementation"
 
 ### Implementation for User Story 5
 
-- [ ] T030 [P] [US5] Add "Share to Pastebin" button in question display area
-- [ ] T031 [US5] Implement js/pastebin.js with POST to pastebin.com/api/api_post.php
-- [ ] T032 [US5] Display returned Pastebin URL for user to copy
-- [ ] T033 [US5] Handle Pastebin API errors gracefully
+- [X] T030 [P] [US5] Add "Share to Pastebin" button in question display area
+- [X] T031 [US5] Implement js/pastebin.js with POST to pastebin.com/api/api_post.php
+- [X] T032 [US5] Display returned Pastebin URL for user to copy
+- [X] T033 [US5] Handle Pastebin API errors gracefully
 
 ---
 
@@ -133,9 +133,9 @@ description: "Task list for Cozy Queries AI question generator implementation"
 
 ### Implementation for Documentation
 
-- [ ] T034 [P] Create README.md with: project description, quick start (3 steps), API key setup, troubleshooting
-- [ ] T035 [P] Create docs/quickstart.md with illustrated step-by-step guide
-- [ ] T036 Create docs/self-hosting.md with instructions for local deployment (python -m http.server)
+- [X] T034 [P] Create README.md with: project description, quick start (3 steps), API key setup, troubleshooting
+- [X] T035 [P] Create docs/quickstart.md with illustrated step-by-step guide
+- [X] T036 Create docs/self-hosting.md with instructions for local deployment (python -m http.server)
 
 ---
 
