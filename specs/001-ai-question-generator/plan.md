@@ -1,4 +1,4 @@
-# Implementation Plan: AI Question Generator
+# Implementation Plan: Cozy Queries
 
 **Branch**: `001-ai-question-generator` | **Date**: 2026-04-18 | **Spec**: [spec.md](spec.md)
 

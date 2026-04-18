@@ -1,9 +1,9 @@
-# Feature Specification: AI Question Generator for Ham Radio Nets
+# Feature Specification: Cozy Queries - AI Question Generator for Conversations
 
 **Feature Branch**: `001-ai-question-generator`  
 **Created**: 2026-04-18  
 **Status**: Draft  
-**Input**: User description: "Create a local web application that uses hygge questions as a foundation. Users can connect to local AI (Ollama) or cloud AI services (OpenAI, OpenRouter, Anthropic) to generate custom questions for ham radio nets, ice breakers, and general conversation. The app should support generating lists of questions in desired quantities, have an easy-to-follow README, and include a GitHub Pages demo page that demonstrates how the tool works."
+**Input**: User description: "Create a local web application that uses cozy queries as a foundation. Users can connect to local AI (Ollama) or cloud AI services (OpenAI, OpenRouter, Anthropic) to generate custom questions for ham radio nets, ice breakers, and general conversation. The app should support generating lists of questions in desired quantities, have an easy-to-follow README, and include a GitHub Pages demo page that demonstrates how the tool works."
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -138,6 +138,6 @@ A technically-minded but not expert ham radio operator wants to install the app 
 
 - Users have basic computer literacy (can run commands in terminal, open browser).
 - Ham radio operators have access to the internet for cloud AI services or can run Ollama locally.
-- The hygge questions collection serves as the foundation prompt/seed material for AI-generated questions.
+- The cozy querys collection serves as the foundation prompt/seed material for AI-generated questions.
 - API keys are stored in browser localStorage and never leave the user's device.
 - Users with privacy concerns can self-host the app locally.

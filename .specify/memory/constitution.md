@@ -1,4 +1,4 @@
-# Hygge Questions Constitution
+# Cozy Queries Constitution
 
 ## Core Principles
 
