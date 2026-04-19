@@ -147,14 +147,14 @@ description: "Task list for Cozy Queries AI question generator implementation"
 
 ### Implementation for Landing Page
 
-- [ ] T037 Create landing.html with hero section (full viewport, animated title, scroll prompt)
-- [ ] T038 Implement Intersection Observer animations for content sections
-- [ ] T039 [P] [US6] Create alternating timeline or grid layout for content cards
-- [ ] T040 [US6] Add inline SVG data visualization with editorial annotations
-- [ ] T041 Add pullquote sections between major content areas
-- [ ] T042 Create statistics grid with oversized numbers
-- [ ] T043 Add final callout with project summary and CTA buttons
-- [ ] T044 Apply dark theme design system (no purple gradients, distinctive fonts, generous whitespace)
+- [X] T037 Create landing.html with hero section (full viewport, animated title, scroll prompt)
+- [X] T038 Implement Intersection Observer animations for content sections
+- [X] T039 [P] [US6] Create alternating timeline or grid layout for content cards
+- [X] T040 [US6] Add inline SVG data visualization with editorial annotations
+- [X] T041 Add pullquote sections between major content areas
+- [X] T042 Create statistics grid with oversized numbers
+- [X] T043 Add final callout with project summary and CTA buttons
+- [X] T044 Apply dark theme design system (no purple gradients, distinctive fonts, generous whitespace)
 
 ---
 
