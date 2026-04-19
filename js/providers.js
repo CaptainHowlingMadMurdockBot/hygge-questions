@@ -46,16 +46,6 @@ const AI_PROVIDERS = {
         defaultModel: 'llama3.2',
         headerFormat: null,
         contentFormat: 'prompt'
-    },
-    ollama_cloud: {
-        id: 'ollama_cloud',
-        name: 'Ollama Cloud',
-        endpoint: 'https://ollama.com/api/chat',
-        authType: 'api_key',
-        requiresApiKey: true,
-        defaultModel: 'llama3.2',
-        headerFormat: 'Bearer',
-        contentFormat: 'messages'
     }
 };
 
