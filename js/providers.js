@@ -87,7 +87,12 @@ function getEndpoint(providerId, settings = {}) {
     if (!provider) return null;
 
     if (providerId === 'ollama') {
-        return settings.ollamaUrl || 'http://localhost:11434/api/generate';
+        const url = settings.ollamaUrl || 'http://localhost:11434';
+        // Ensure we have the full API endpoint
+        if (!url.includes('/api/')) {
+            return url + '/api/generate';
+        }
+        return url;
     }
 
     return provider.endpoint;
