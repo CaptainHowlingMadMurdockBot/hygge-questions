@@ -9,7 +9,9 @@ const elements = {
     apiKey: document.getElementById('api-key'),
     toggleApiKey: document.getElementById('toggle-api-key'),
     ollamaUrl: document.getElementById('ollama-url'),
+    ollamaModel: document.getElementById('ollama-model'),
     ollamaGroup: document.querySelector('.ollama-url-group'),
+    ollamaModelGroup: document.querySelector('.ollama-model-group'),
     topic: document.getElementById('topic'),
     quantity: document.getElementById('quantity'),
     generateBtn: document.getElementById('generate-btn'),
@@ -45,6 +47,9 @@ function loadSavedConfig() {
     if (config.ollamaUrl) {
         elements.ollamaUrl.value = config.ollamaUrl;
     }
+    if (config.ollamaModel) {
+        elements.ollamaModel.value = config.ollamaModel;
+    }
 }
 
 // Setup event listeners
@@ -79,9 +84,10 @@ function setupEventListeners() {
 
 // Update Ollama URL visibility
 function updateOllamaVisibility() {
-    // Only show URL field for local Ollama (not Ollama Cloud)
+    // Only show URL field for local Ollama
     const isLocalOllama = elements.provider.value === 'ollama';
     elements.ollamaGroup.style.display = isLocalOllama ? 'block' : 'none';
+    elements.ollamaModelGroup.style.display = isLocalOllama ? 'block' : 'none';
 
     // Auto-save API key for cloud providers (not local Ollama)
     const isCloudProvider = elements.provider.value !== 'ollama';
@@ -108,10 +114,11 @@ async function handleGenerate() {
         return;
     }
 
-    // Get Ollama URL if applicable
+    // Get Ollama settings if applicable
     const settings = {};
     if (providerId === 'ollama') {
         settings.ollamaUrl = elements.ollamaUrl.value;
+        settings.ollamaModel = elements.ollamaModel.value;
     }
 
     // Show loading
@@ -126,7 +133,8 @@ async function handleGenerate() {
             ...loadConfig(),
             selectedProvider: providerId,
             preferredQuantity: quantity,
-            ollamaUrl: settings.ollamaUrl || loadConfig().ollamaUrl
+            ollamaUrl: settings.ollamaUrl || loadConfig().ollamaUrl,
+            ollamaModel: settings.ollamaModel || loadConfig().ollamaModel
         });
         if (apiKey && requiresApiKey(providerId)) {
             saveApiKey(apiKey, true);

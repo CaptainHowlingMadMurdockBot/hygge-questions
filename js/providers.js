@@ -43,7 +43,7 @@ const AI_PROVIDERS = {
         endpoint: null, // Set dynamically from settings
         authType: 'none',
         requiresApiKey: false,
-        defaultModel: 'llama3.2',
+        defaultModel: 'qwen3-coder-next:latest',
         headerFormat: null,
         contentFormat: 'prompt'
     }

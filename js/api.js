@@ -22,7 +22,8 @@ async function generateQuestions(providerId, apiKey, topic, quantity, settings =
     const prompt = buildPrompt(topic, quantity);
 
     if (providerId === 'ollama') {
-        return generateWithOllama(endpoint, prompt, provider.defaultModel);
+        const model = settings.ollamaModel || provider.defaultModel;
+        return generateWithOllama(endpoint, prompt, model);
     }
 
     return generateWithChatAPI(provider, endpoint, apiKey, prompt, quantity);
