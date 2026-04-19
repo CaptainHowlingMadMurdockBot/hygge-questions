@@ -146,7 +146,16 @@ async function handleGenerate() {
 
     } catch (e) {
         console.error('Generation failed:', e);
-        showError(e.message || 'Failed to generate questions. Please try again.');
+        let message = e.message || 'Failed to generate questions. Please try again.';
+
+        // Detect CORS errors and suggest alternatives
+        if (message.includes('NetworkError') || message.includes('Failed to fetch') || message.includes('CORS')) {
+            if (elements.provider.value === 'ollama_cloud') {
+                message = 'Ollama Cloud does not support browser requests. Try local Ollama, OpenAI, Anthropic, or OpenRouter instead.';
+            }
+        }
+
+        showError(message);
     } finally {
         elements.loading.style.display = 'none';
         elements.generateBtn.disabled = false;
