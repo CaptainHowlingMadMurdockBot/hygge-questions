@@ -79,11 +79,13 @@ function setupEventListeners() {
 
 // Update Ollama URL visibility
 function updateOllamaVisibility() {
-    const isOllama = elements.provider.value === 'ollama';
-    elements.ollamaGroup.style.display = isOllama ? 'block' : 'none';
+    // Only show URL field for local Ollama (not Ollama Cloud)
+    const isLocalOllama = elements.provider.value === 'ollama';
+    elements.ollamaGroup.style.display = isLocalOllama ? 'block' : 'none';
 
-    if (!isOllama && elements.apiKey.value) {
-        // Auto-save API key for cloud providers
+    // Auto-save API key for cloud providers (not local Ollama)
+    const isCloudProvider = elements.provider.value !== 'ollama';
+    if (isCloudProvider && elements.apiKey.value) {
         saveApiKey(elements.apiKey.value, true);
     }
 }
