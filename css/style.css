@@ -182,6 +182,22 @@ section {
     margin-top: var(--spacing-xs);
 }
 
+/* === Status Text === */
+.status-text {
+    display: inline-block;
+    margin-left: var(--spacing-md);
+    font-size: 0.875rem;
+    transition: color var(--transition-fast);
+}
+
+.status-text.success {
+    color: var(--color-success);
+}
+
+.status-text.error {
+    color: var(--color-error);
+}
+
 /* === Buttons === */
 .btn {
     display: inline-block;

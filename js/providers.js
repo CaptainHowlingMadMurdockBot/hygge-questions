@@ -87,12 +87,10 @@ function getEndpoint(providerId, settings = {}) {
     if (!provider) return null;
 
     if (providerId === 'ollama') {
-        const url = settings.ollamaUrl || 'http://localhost:11434';
-        // Ensure we have the full API endpoint
-        if (!url.includes('/api/')) {
-            return url + '/api/generate';
-        }
-        return url;
+        // Normalize URL - remove trailing slashes and any /api prefix
+        let url = (settings.ollamaUrl || 'http://localhost:11434').replace(/\/+$/, '');
+        // Use the chat endpoint for better compatibility with modern models
+        return url + '/api/chat';
     }
 
     return provider.endpoint;
