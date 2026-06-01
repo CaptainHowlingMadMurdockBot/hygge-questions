@@ -120,6 +120,11 @@ async function generateWithChatAPI(provider, endpoint, apiKey, prompt, quantity)
  * @returns {Promise<string[]>} Array of questions
  */
 async function generateWithOllama(endpoint, prompt, model) {
+    // Extract quantity from prompt for proper parsing
+    const quantityMatch = prompt.match(/exactly (\d+) questions/);
+    const quantity = quantityMatch ? parseInt(quantityMatch[1]) : 5;
+
+    // Use chat API format (modern Ollama)
     const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
@@ -127,24 +132,34 @@ async function generateWithOllama(endpoint, prompt, model) {
         },
         body: JSON.stringify({
             model: model,
-            prompt: prompt,
-            stream: false
+            messages: [
+                {
+                    role: 'system',
+                    content: 'You generate cozy, warm questions for conversations. Each question should be reflective, open-ended, and comfort-focused. Format your response as a numbered list with exactly ' + quantity + ' questions, one per line, with no additional text.'
+                },
+                {
+                    role: 'user',
+                    content: prompt
+                }
+            ],
+            stream: false,
+            options: {
+                temperature: 0.8,
+                num_predict: 1500
+            }
         })
     });
 
     if (!response.ok) {
-        if (response.status === 0) {
-            throw new Error('Cannot connect to Ollama. Make sure Ollama is running.');
+        if (response.status === 0 || response.type === 'opaque' || response.type === 'error') {
+            throw new Error('Cannot connect to Ollama. Make sure Ollama is running: `ollama serve`');
         }
-        throw new Error(`Ollama error: ${response.status}`);
+        const errorText = await response.text();
+        throw new Error(`Ollama error (${response.status}): ${errorText}`);
     }
 
     const data = await response.json();
-    const content = data.response || '';
-
-    // For Ollama, try to extract quantity from prompt
-    const quantityMatch = prompt.match(/exactly (\d+) questions/);
-    const quantity = quantityMatch ? parseInt(quantityMatch[1]) : 5;
+    const content = data.message?.content || data.response || '';
 
     return parseQuestions(content, quantity);
 }
@@ -189,10 +204,20 @@ function parseQuestions(content, expectedCount) {
  */
 async function testConnection(providerId, apiKey, settings = {}) {
     try {
-        // For Ollama, just try a simple request
+        // For Ollama, try a simple chat request
         if (providerId === 'ollama') {
-            const endpoint = getEndpoint(providerId, settings) + '/tags';
-            const response = await fetch(endpoint);
+            const url = (settings.ollamaUrl || 'http://localhost:11434').replace(/\/+$/, '');
+            const model = settings.ollamaModel || 'llama3.2:1b';
+
+            const response = await fetch(url + '/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    model: model,
+                    messages: [{ role: 'user', content: 'Hi' }],
+                    stream: false
+                })
+            });
             return response.ok;
         }
 

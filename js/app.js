@@ -12,6 +12,8 @@ const elements = {
     ollamaModel: document.getElementById('ollama-model'),
     ollamaGroup: document.querySelector('.ollama-url-group'),
     ollamaModelGroup: document.querySelector('.ollama-model-group'),
+    testOllamaBtn: document.getElementById('test-ollama-btn'),
+    ollamaStatus: document.getElementById('ollama-status'),
     topic: document.getElementById('topic'),
     quantity: document.getElementById('quantity'),
     generateBtn: document.getElementById('generate-btn'),
@@ -65,6 +67,31 @@ function setupEventListeners() {
         const isPassword = elements.apiKey.type === 'password';
         elements.apiKey.type = isPassword ? 'text' : 'password';
         elements.toggleApiKey.textContent = isPassword ? 'Hide' : 'Show';
+    });
+
+    // Test Ollama connection
+    elements.testOllamaBtn?.addEventListener('click', async () => {
+        const settings = {
+            ollamaUrl: elements.ollamaUrl.value,
+            ollamaModel: elements.ollamaModel.value
+        };
+
+        elements.ollamaStatus.textContent = 'Testing...';
+        elements.ollamaStatus.className = 'status-text';
+
+        try {
+            const success = await testConnection('ollama', '', settings);
+            if (success) {
+                elements.ollamaStatus.textContent = 'Connected!';
+                elements.ollamaStatus.className = 'status-text success';
+            } else {
+                elements.ollamaStatus.textContent = 'Connection failed';
+                elements.ollamaStatus.className = 'status-text error';
+            }
+        } catch (e) {
+            elements.ollamaStatus.textContent = 'Error: ' + e.message;
+            elements.ollamaStatus.className = 'status-text error';
+        }
     });
 
     // Generate button
@@ -156,9 +183,18 @@ async function handleGenerate() {
         console.error('Generation failed:', e);
         let message = e.message || 'Failed to generate questions. Please try again.';
 
-        // Detect CORS errors and suggest alternatives
-        if (message.includes('NetworkError') || message.includes('Failed to fetch') || message.includes('CORS')) {
-            if (elements.provider.value === 'ollama_cloud') {
+        // Detect CORS errors and suggest alternatives for Ollama
+        if (message.includes('NetworkError') || message.includes('Failed to fetch') || message.includes('CORS') || message.includes('Cannot connect')) {
+            if (elements.provider.value === 'ollama') {
+                message = 'Cannot connect to Ollama. Common causes:\n\n' +
+                    '1. Ollama is not running - start it with: `ollama serve`\n' +
+                    '2. CORS not enabled - Ollama blocks browser requests by default\n' +
+                    '3. Wrong URL - check the Ollama URL field\n\n' +
+                    'For local use, try one of these fixes:\n' +
+                    '- Install a CORS proxy (e.g., "ollama-cors" npm package)\n' +
+                    '- Use a browser extension to bypass CORS\n' +
+                    '- Or switch to OpenAI/Anthropic for cloud AI';
+            } else if (elements.provider.value === 'ollama_cloud') {
                 message = 'Ollama Cloud does not support browser requests. Try local Ollama, OpenAI, Anthropic, or OpenRouter instead.';
             }
         }
